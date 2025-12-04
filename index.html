@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Механіка обнулення</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #000;
+  color: #FFF;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+.card {
+  width: 100%;
+  max-width: 980px;
+  padding: 10px 15px 15px;
+  background: #111;
+  border-radius: 0;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+h1 {
+  font-size: 22px;
+  color: #FFF;
+  letter-spacing: 0.01em;
+  text-align: left;
+  word-break: break-word;
+  line-height: 1.4;
+  white-space: pre-line;
+  flex: 1;
+}
+
+.para {
+  background: #222;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  min-height: 50px;
+  overflow: hidden;
+}
+
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.word {
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: #333;
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  user-select: none;
+  color: #FFF;
+  font-size: 18px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.dim {
+  opacity: 0.3;
+}
+
+button {
+  background: #555;
+  border: none;
+  color: #FFF;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  flex-shrink: 0;
+}
+
+button:active {
+  background: #777;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+  .card {
+    padding: 5px 10px 10px;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  .word {
+    font-size: 16px;
+    padding: 4px 6px;
+  }
+  button {
+    align-self: flex-end;
+  }
+}
+</style>
+</head>
+<body>
+<div class="card" role="main" aria-live="polite">
+  <div class="header">
+    <h1>Блок 1.
+«Механіка обнулення», 2016,
+проєкт «Глобальна адаптація», 200 × 210 см,
+п'ять частин, 35 робіт (розмір кожної роботи: 35 = 40 × 30 см), акрил, антиживопис.</h1>
+    <button id="muteBtn">Звук</button>
+  </div>
+
+  <div class="para"><div class="line" id="p1"></div></div>
+  <div class="para"><div class="line" id="p2"></div></div>
+  <div class="para"><div class="line" id="p3"></div></div>
+</div>
+
+<script>
+const texts = [
+"«Механіка обнулення» — це вихідна точка проєкту «Глобальна Адаптація», де людина вперше входить у поле системної редукції. Цей блок фіксує моменти, коли індивідуальне «я» вперше потрапляє під тиск глобального алгоритму й починає свій перехід у стан функціональної одиниці.",
+"Блок демонструє не просту адаптацію, а процедуру нівелювання суб'єкта, в якій особистість утрачає власну семантику й вмикається в режим програмованої реакції. Нинішній візуальний ряд перетворюється на системний протокол того, як людська свідомість поступово переводиться з режиму автономії в режим операційної сумісності із зовнішньою матрицею.",
+"Митець трактує цей процес як критичну фазу антропологічної трансформації: момент, коли людина, ще здатна усвідомлювати нав'язувану модель, починає самостійно її підживлювати за рахунок втрати власного позитивного ресурсу. «Механіка обнулення» попереджає про долю, що чекає на суб'єкта, який безперешкодно приймає правила глобалізації, — про перехід від носія індивідуального досвіду до елемента універсального, знеособленого порядку..."
+];
+
+function setup(){
+  ['p1','p2','p3'].forEach((id, idx)=>{
+    const cont = document.getElementById(id);
+    cont.innerHTML='';
+    const words = texts[idx].split(/\s+/).filter(Boolean);
+    words.forEach((w)=>{
+      const sp = document.createElement('span');
+      sp.className='word';
+      sp.textContent = w;
+      cont.appendChild(sp);
+    });
+  });
+}
+setup();
+
+function shuffleOnce(){
+  document.querySelectorAll('.line').forEach(line=>{
+    const spans = Array.from(line.children);
+    if(spans.length < 2) return;
+    const swaps = Math.max(1, Math.floor(spans.length * 0.06));
+    for(let s=0; s<swaps; s++){
+      const i = Math.floor(Math.random()*spans.length);
+      const j = Math.floor(Math.random()*spans.length);
+      if(i===j) continue;
+      const a = spans[i], b = spans[j];
+
+      a.style.transform = 'scale(1.05)';
+      b.style.transform = 'scale(1.05)';
+
+      setTimeout(()=>{
+        try {
+          a.parentNode.insertBefore(b, a);
+        } catch(e) {}
+        a.style.transform=''; 
+        b.style.transform='';
+      }, 200);
+    }
+    spans.forEach(sp=>{
+      if(Math.random() < 0.07) sp.classList.toggle('dim'); 
+      else sp.classList.remove('dim');
+    });
+  });
+}
+
+let paused = false;
+let speedMultiplier = 1;
+
+let audioCtx = null;
+let masterGain = null;
+let breathing = { running:false, mute:false, timeout:null, phase:'inhale' };
+
+function initAudio() {
+  if (audioCtx) return;
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = breathing.mute ? 0 : 0.26;
+    masterGain.connect(audioCtx.destination);
+
+    breathing.running = true;
+    breathing.phase = 'inhale';
+    scheduleBreathPhase(breathing.phase);
+  } catch (e) {
+    console.warn('AudioContext not available:', e);
+    breathing.running = false;
+    document.getElementById('muteBtn').style.display = 'none';
+  }
+}
+
+function makeBreathPhase(duration, intensity, phase){
+  if(!audioCtx || !breathing.running) return;
+
+  const bufferSize = Math.floor(audioCtx.sampleRate * Math.max(0.4, duration));
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+
+  for(let i=0;i<bufferSize;i++){
+    const white = (Math.random()*2 - 1);
+    data[i] = white * 0.55;
+  }
+
+  const src = audioCtx.createBufferSource();
+  src.buffer = buffer;
+  src.loop = false;
+
+  const lp = audioCtx.createBiquadFilter();
+  lp.type = 'lowpass';
+  const isInhale = phase === 'inhale';
+  lp.frequency.value = isInhale ? 2600 : 2200;
+
+  const g = audioCtx.createGain();
+  g.gain.value = 0.0001;
+
+  src.connect(lp); 
+  lp.connect(g); 
+  g.connect(masterGain);
+
+  const now = audioCtx.currentTime;
+
+  const inhalePart  = isInhale ? 0.45 : 0.25;
+  const sustainPart = isInhale ? 0.25 : 0.35;
+  const releasePart = 1 - inhalePart - sustainPart;
+
+  const peak = isInhale ? 0.34 * intensity : 0.28 * intensity;
+  const tail = isInhale ? 0.10 * intensity : 0.05 * intensity;
+
+  const t0 = now;
+  const t1 = t0 + duration * inhalePart;
+  const t2 = t1 + duration * sustainPart;
+  const t3 = t2 + duration * releasePart;
+
+  g.gain.cancelScheduledValues(t0);
+  g.gain.setValueAtTime(0.0001, t0);
+  g.gain.linearRampToValueAtTime(peak, t1);
+  g.gain.linearRampToValueAtTime(peak*0.9, t2);
+  g.gain.linearRampToValueAtTime(tail, t3);
+  g.gain.linearRampToValueAtTime(0.0001, t3+0.08);
+
+  src.start(t0);
+  src.stop(t3+0.12);
+}
+
+function scheduleBreathPhase(phase){
+  if(!breathing.running) return;
+  const isInhale = (phase === 'inhale');
+
+  const speedFactor = 2.5 / 1.2;
+  const baseInhaleDur   = 1.4 * speedFactor;
+  const baseExhaleDur   = 1.8 * speedFactor;
+  const basePauseInhale = 0.25 * speedFactor;
+  const basePauseExhale = 0.35 * speedFactor;
+
+  const jitter = 0.04;
+  const randFactor = 1 + (Math.random()*2 - 1)*jitter;
+
+  const baseDur = isInhale ? baseInhaleDur : baseExhaleDur;
+  const basePause = isInhale ? basePauseInhale : basePauseExhale;
+
+  const dur = (baseDur * randFactor) / speedMultiplier;
+  const pause = (basePause * randFactor) / speedMultiplier;
+  const intensity = isInhale ? 0.9 : 0.75;
+
+  if(!paused){
+    shuffleOnce();
+  }
+
+  makeBreathPhase(dur, intensity, phase);
+
+  breathing.timeout = setTimeout(()=>{
+    const next = isInhale ? 'exhale' : 'inhale';
+    breathing.phase = next;
+    scheduleBreathPhase(next);
+  }, (dur + pause)*1000);
+}
+
+const muteBtn = document.getElementById('muteBtn');
+
+muteBtn.onclick = ()=>{
+  if (!audioCtx) {
+    initAudio();
+    if (!audioCtx) return;
+  }
+  if(audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(()=>{});
+  }
+
+  breathing.mute = !breathing.mute;
+  masterGain.gain.value = breathing.mute ? 0 : 0.26;
+  muteBtn.style.background = breathing.mute ? '#333' : '#555';
+};
+
+function userInit() {
+  if (!audioCtx) {
+    initAudio();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(()=>{});
+  }
+}
+
+window.addEventListener('click', userInit, { once: true });
+window.addEventListener('touchstart', userInit, { once: true });
+
+setTimeout(() => {
+  if (!breathing.running) {
+    function startTextLoop() {
+      function step() {
+        const baseDelay = 2200;
+        const delay = baseDelay / speedMultiplier;
+        if (!paused) {
+          shuffleOnce();
+        }
+        setTimeout(step, delay);
+      }
+      step();
+    }
+    startTextLoop();
+  }
+}, 600);
+
+</script>
+</body>
+</html>
