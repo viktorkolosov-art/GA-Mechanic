@@ -11,26 +11,30 @@
   padding: 0;
 }
 
+html, body {
+  background: #000 !important;
+  color: #FFF !important;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #000;
-  color: #FFF;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 0;
+  padding: 20px;
   margin: 0;
   overflow-y: auto;
   -webkit-text-size-adjust: 100%;
+  background-color: #000 !important;
 }
 
 .card {
   width: 100%;
   max-width: 980px;
-  padding: 10px 15px 15px;
-  background: #111;
+  padding: 0;
+  background: transparent !important;
   border-radius: 0;
   box-shadow: none;
   flex-shrink: 0;
@@ -41,12 +45,12 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
-  gap: 15px;
+  gap: 10px;
 }
 
 h1 {
   font-size: 22px;
-  color: #FFF;
+  color: #FFF !important;
   letter-spacing: 0.01em;
   text-align: left;
   word-break: break-word;
@@ -55,302 +59,410 @@ h1 {
   flex: 1;
 }
 
-.para {
-  background: #222;
-  padding: 12px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  min-height: 50px;
-  overflow: hidden;
-}
-
-.line {
+.button-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-
-.word {
-  display: inline-block;
-  padding: 5px 8px;
-  border-radius: 4px;
-  background: #333;
-  transition: transform 200ms ease-out, opacity 200ms ease-out;
-  user-select: none;
-  color: #FFF;
-  font-size: 18px;
-  line-height: 1.3;
-  word-break: break-word;
-}
-
-.dim {
-  opacity: 0.3;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 button {
   background: #555;
   border: none;
   color: #FFF;
-  padding: 10px 15px;
+  padding: 0;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
   white-space: nowrap;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  position: relative;
 }
 
 button:active {
   background: #777;
 }
 
+button svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* КАРТИНКА ПОД ЗАГОЛОВКОМ С БЕЛОЙ РАМКОЙ */
+.image-strip {
+  width: 100%;
+  margin-bottom: 20px;
+  display: block;
+  border: 2px solid #FFFFFF;
+  padding: 2px;
+  background: #FFFFFF;
+}
+
+.image-strip img {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* ТЕКСТ */
+.content {
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  line-height: 1.6;
+  font-size: 18px;
+  color: #FFF !important;
+}
+
+.content p {
+  margin-bottom: 15px;
+  color: #FFF !important;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.word {
+  display: inline;
+  transition: opacity 300ms ease-in-out;
+}
+
 @media (max-width: 600px) {
   body {
-    padding: 0;
-  }
-  .card {
-    padding: 5px 10px 10px;
+    padding: 10px;
   }
   .header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
   h1 {
     font-size: 18px;
   }
-  .word {
+  .content {
     font-size: 16px;
-    padding: 4px 6px;
-  }
-  button {
-    align-self: flex-end;
   }
 }
 </style>
 </head>
 <body>
-<div class="card" role="main" aria-live="polite">
+<div class="card" role="main">
   <div class="header">
     <h1>Блок 1.
 «Механіка обнулення», 2016,
 проєкт «Глобальна адаптація», 200 × 210 см,
 п'ять частин, 35 робіт (розмір кожної роботи: 35 = 40 × 30 см), акрил, антиживопис.</h1>
-    <button id="muteBtn">Звук</button>
+    <div class="button-group">
+      <button id="muteBtn" aria-label="Звук">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 20 6 C 22 6 25 8 26 12 C 27 16 26 20 24 23 C 23 24 22 25 20 25" 
+                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 20 10 C 21 10 22 11 22.5 13 C 23 15 22.5 17 21 18.5" 
+                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M 19 24 C 18 25 17 25.5 16 25" 
+                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+      <button id="freezeBtn" aria-label="Заморозити">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Центрально-симметричная снежинка (8 лучей) -->
+          <!-- Вертикальная линия -->
+          <line x1="16" y1="4" x2="16" y2="28" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <!-- Горизонтальная линия -->
+          <line x1="4" y1="16" x2="28" y2="16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <!-- Диагональ 1 -->
+          <line x1="7" y1="7" x2="25" y2="25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <!-- Диагональ 2 -->
+          <line x1="25" y1="7" x2="7" y2="25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          
+          <!-- Ответвления на концах (8 направлений) -->
+          <!-- Верх -->
+          <line x1="16" y1="4" x2="13" y2="7" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="19" y2="7" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Низ -->
+          <line x1="16" y1="28" x2="13" y2="25" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="28" x2="19" y2="25" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Лево -->
+          <line x1="4" y1="16" x2="7" y2="13" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="7" y2="19" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Право -->
+          <line x1="28" y1="16" x2="25" y2="13" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="16" x2="25" y2="19" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Диагональ верх-лево -->
+          <line x1="7" y1="7" x2="9" y2="5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="5" y2="9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Диагональ верх-право -->
+          <line x1="25" y1="7" x2="23" y2="5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="27" y2="9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Диагональ низ-лево -->
+          <line x1="7" y1="25" x2="5" y2="23" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="9" y2="27" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Диагональ низ-право -->
+          <line x1="25" y1="25" x2="27" y2="23" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="25" x2="23" y2="27" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="para"><div class="line" id="p1"></div></div>
-  <div class="para"><div class="line" id="p2"></div></div>
-  <div class="para"><div class="line" id="p3"></div></div>
+  <!-- КАРТИНКА ПОД ЗАГОЛОВКОМ -->
+  <div class="image-strip">
+    <img src="Fragment Mechanic.png" alt="Механіка обнулення">
+  </div>
+
+  <div class="content" id="textContent">
+    <p>Ця картина — про те, як ми намагаємося зберегти себе в світі, що постійно змінюється. Вона про те, як ми шукаємо баланс між тим, що було, і тим, що буде. Про те, як ми намагаємося зберегти свою ідентичність у світі, що постійно змінюється.</p>
+
+    <p>Механіка обнулення — це процес, коли ми скидаємо все зайве, щоб знайти себе справжніх. Це про те, як ми позбуваємося нашарувань, які накопичилися за роки, щоб знайти свою суть.</p>
+
+    <p>У цій картині закодовано ідею циклічності: все повертається, все починається знову. Але кожен новий цикл — це не просто повторення, а новий виток спіралі, де ми стаємо трохи іншими, трохи мудрішими.</p>
+
+    <p>Фігури на полотні нагадують про те, що ми всі — частина великого механізму, де кожен рух має значення. Де кожна дія породжує наслідки. Де все взаємопов'язане.</p>
+
+    <p>Це картина про пошук себе в хаосі сучасного світу. Про те, як важливо іноді зупинитися, обнулитися і почати знову — вже з новим розумінням, з новою перспективою.</p>
+  </div>
 </div>
 
 <script>
-const texts = [
-"«Механіка обнулення» — це вихідна точка проєкту «Глобальна Адаптація», де людина вперше входить у поле системної редукції. Цей блок фіксує моменти, коли індивідуальне «я» вперше потрапляє під тиск глобального алгоритму й починає свій перехід у стан функціональної одиниці.",
-"Блок демонструє не просту адаптацію, а процедуру нівелювання суб'єкта, в якій особистість утрачає власну семантику й вмикається в режим програмованої реакції. Нинішній візуальний ряд перетворюється на системний протокол того, як людська свідомість поступово переводиться з режиму автономії в режим операційної сумісності із зовнішньою матрицею.",
-"Митець трактує цей процес як критичну фазу антропологічної трансформації: момент, коли людина, ще здатна усвідомлювати нав'язувану модель, починає самостійно її підживлювати за рахунок втрати власного позитивного ресурсу. «Механіка обнулення» попереджає про долю, що чекає на суб'єкта, який безперешкодно приймає правила глобалізації, — про перехід від носія індивідуального досвіду до елемента універсального, знеособленого порядку..."
-];
-
-function setup(){
-  ['p1','p2','p3'].forEach((id, idx)=>{
-    const cont = document.getElementById(id);
-    cont.innerHTML='';
-    const words = texts[idx].split(/\s+/).filter(Boolean);
-    words.forEach((w)=>{
-      const sp = document.createElement('span');
-      sp.className='word';
-      sp.textContent = w;
-      cont.appendChild(sp);
-    });
-  });
-}
-setup();
-
-function shuffleOnce(){
-  document.querySelectorAll('.line').forEach(line=>{
-    const spans = Array.from(line.children);
-    if(spans.length < 2) return;
-    const swaps = Math.max(1, Math.floor(spans.length * 0.06));
-    for(let s=0; s<swaps; s++){
-      const i = Math.floor(Math.random()*spans.length);
-      const j = Math.floor(Math.random()*spans.length);
-      if(i===j) continue;
-      const a = spans[i], b = spans[j];
-
-      a.style.transform = 'scale(1.05)';
-      b.style.transform = 'scale(1.05)';
-
-      setTimeout(()=>{
-        try {
-          a.parentNode.insertBefore(b, a);
-        } catch(e) {}
-        a.style.transform=''; 
-        b.style.transform='';
-      }, 200);
-    }
-    spans.forEach(sp=>{
-      if(Math.random() < 0.07) sp.classList.toggle('dim'); 
-      else sp.classList.remove('dim');
-    });
-  });
-}
-
-let paused = false;
-let speedMultiplier = 1;
-
 let audioCtx = null;
 let masterGain = null;
-let breathing = { running:false, mute:false, timeout:null, phase:'inhale' };
+let waveSound = { running: false, mute: false, timeout: null };
+let textFrozen = false;
+let shuffleTimeout = null;
 
 function initAudio() {
   if (audioCtx) return;
   try {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     masterGain = audioCtx.createGain();
-    masterGain.gain.value = breathing.mute ? 0 : 0.26;
+    masterGain.gain.value = waveSound.mute ? 0 : 1.0;
     masterGain.connect(audioCtx.destination);
 
-    breathing.running = true;
-    breathing.phase = 'inhale';
-    scheduleBreathPhase(breathing.phase);
+    waveSound.running = true;
+    scheduleWave();
   } catch (e) {
     console.warn('AudioContext not available:', e);
-    breathing.running = false;
+    waveSound.running = false;
     document.getElementById('muteBtn').style.display = 'none';
   }
 }
 
-function makeBreathPhase(duration, intensity, phase){
-  if(!audioCtx || !breathing.running) return;
-
-  const bufferSize = Math.floor(audioCtx.sampleRate * Math.max(0.4, duration));
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-  const data = buffer.getChannelData(0);
-
-  for(let i=0;i<bufferSize;i++){
-    const white = (Math.random()*2 - 1);
-    data[i] = white * 0.55;
+// Создание одного удара волны
+function makeCrash(startTime, intensity = 1.0) {
+  if (!audioCtx || !waveSound.running) return;
+  
+  const crashDuration = 3.6;
+  const crashNoise = audioCtx.createBufferSource();
+  const crashBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * crashDuration, audioCtx.sampleRate);
+  const crashData = crashBuffer.getChannelData(0);
+  
+  for (let i = 0; i < crashData.length; i++) {
+    crashData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.9));
   }
+  
+  crashNoise.buffer = crashBuffer;
+  
+  const crashFilter = audioCtx.createBiquadFilter();
+  crashFilter.type = 'lowpass';
+  crashFilter.frequency.value = 400;
+  crashFilter.Q.value = 0.7;
+  
+  // Эхо для наката
+  const crashDelay = audioCtx.createDelay();
+  crashDelay.delayTime.value = 0.15;
+  const crashEchoGain = audioCtx.createGain();
+  crashEchoGain.gain.value = 0.4;
+  
+  const crashGain = audioCtx.createGain();
+  crashGain.gain.setValueAtTime(0.0001, startTime);
+  crashGain.gain.exponentialRampToValueAtTime(1.2 * intensity, startTime + 0.3);
+  crashGain.gain.linearRampToValueAtTime(0.9 * intensity, startTime + crashDuration * 0.5);
+  crashGain.gain.exponentialRampToValueAtTime(0.4 * intensity, startTime + crashDuration);
+  
+  crashNoise.connect(crashFilter);
+  crashFilter.connect(crashGain);
+  crashGain.connect(masterGain);
+  
+  // Эхо
+  crashGain.connect(crashDelay);
+  crashDelay.connect(crashEchoGain);
+  crashEchoGain.connect(masterGain);
+  
+  crashNoise.start(startTime);
+  crashNoise.stop(startTime + crashDuration);
+  
+  return crashDuration;
+}
 
-  const src = audioCtx.createBufferSource();
-  src.buffer = buffer;
-  src.loop = false;
+// Создание отката волны
+function makeRetreat(startTime) {
+  if (!audioCtx || !waveSound.running) return;
+  
+  const retreatDuration = 6.5;
+  
+  const retreatNoise = audioCtx.createBufferSource();
+  const retreatBuffer = audioCtx.createBuffer(1, audioCtx.sampleRate * retreatDuration, audioCtx.sampleRate);
+  const retreatData = retreatBuffer.getChannelData(0);
+  
+  for (let i = 0; i < retreatData.length; i++) {
+    retreatData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 1.8));
+  }
+  
+  retreatNoise.buffer = retreatBuffer;
+  
+  const retreatFilter = audioCtx.createBiquadFilter();
+  retreatFilter.type = 'highpass';
+  retreatFilter.frequency.value = 300;
+  retreatFilter.Q.value = 0.4;
+  
+  const retreatGain = audioCtx.createGain();
+  // Начинается ОЧЕНЬ тихо, вплотную к накату
+  retreatGain.gain.setValueAtTime(0.0001, startTime);
+  retreatGain.gain.exponentialRampToValueAtTime(0.08, startTime + 1.2);
+  retreatGain.gain.linearRampToValueAtTime(0.06, startTime + retreatDuration * 0.5);
+  retreatGain.gain.exponentialRampToValueAtTime(0.0001, startTime + retreatDuration);
+  
+  retreatNoise.connect(retreatFilter);
+  retreatFilter.connect(retreatGain);
+  retreatGain.connect(masterGain);
+  
+  retreatNoise.start(startTime);
+  retreatNoise.stop(startTime + retreatDuration);
+  
+  return retreatDuration;
+}
 
-  const lp = audioCtx.createBiquadFilter();
-  lp.type = 'lowpass';
-  const isInhale = phase === 'inhale';
-  lp.frequency.value = isInhale ? 2600 : 2200;
-
-  const g = audioCtx.createGain();
-  g.gain.value = 0.0001;
-
-  src.connect(lp); 
-  lp.connect(g); 
-  g.connect(masterGain);
+// Звук волны: иногда одиночный удар, иногда двойной
+function makeWaveSound() {
+  if (!audioCtx || !waveSound.running) return;
 
   const now = audioCtx.currentTime;
-
-  const inhalePart  = isInhale ? 0.45 : 0.25;
-  const sustainPart = isInhale ? 0.25 : 0.35;
-  const releasePart = 1 - inhalePart - sustainPart;
-
-  const peak = isInhale ? 0.34 * intensity : 0.28 * intensity;
-  const tail = isInhale ? 0.10 * intensity : 0.05 * intensity;
-
-  const t0 = now;
-  const t1 = t0 + duration * inhalePart;
-  const t2 = t1 + duration * sustainPart;
-  const t3 = t2 + duration * releasePart;
-
-  g.gain.cancelScheduledValues(t0);
-  g.gain.setValueAtTime(0.0001, t0);
-  g.gain.linearRampToValueAtTime(peak, t1);
-  g.gain.linearRampToValueAtTime(peak*0.9, t2);
-  g.gain.linearRampToValueAtTime(tail, t3);
-  g.gain.linearRampToValueAtTime(0.0001, t3+0.08);
-
-  src.start(t0);
-  src.stop(t3+0.12);
-}
-
-function scheduleBreathPhase(phase){
-  if(!breathing.running) return;
-  const isInhale = (phase === 'inhale');
-
-  const speedFactor = 2.5 / 1.2;
-  const baseInhaleDur   = 1.4 * speedFactor;
-  const baseExhaleDur   = 1.8 * speedFactor;
-  const basePauseInhale = 0.25 * speedFactor;
-  const basePauseExhale = 0.35 * speedFactor;
-
-  const jitter = 0.04;
-  const randFactor = 1 + (Math.random()*2 - 1)*jitter;
-
-  const baseDur = isInhale ? baseInhaleDur : baseExhaleDur;
-  const basePause = isInhale ? basePauseInhale : basePauseExhale;
-
-  const dur = (baseDur * randFactor) / speedMultiplier;
-  const pause = (basePause * randFactor) / speedMultiplier;
-  const intensity = isInhale ? 0.9 : 0.75;
-
-  if(!paused){
-    shuffleOnce();
+  
+  // 25% вероятность двойной волны
+  const isDouble = Math.random() < 0.25;
+  
+  if (isDouble) {
+    // ДВОЙНОЙ УДАР: первый удар
+    const firstCrashDuration = makeCrash(now, 1.0);
+    
+    // Второй удар начинается почти сразу после первого (небольшая пауза)
+    const secondCrashStart = now + firstCrashDuration - 1.5;
+    const secondCrashDuration = makeCrash(secondCrashStart, 0.95);
+    
+    // Откат начинается вплотную после второго удара
+    const retreatStart = secondCrashStart + secondCrashDuration - 1.0;
+    makeRetreat(retreatStart);
+  } else {
+    // ОДИНОЧНЫЙ УДАР
+    const crashDuration = makeCrash(now, 1.0);
+    
+    // Откат начинается вплотную к накату
+    const retreatStart = now + crashDuration - 1.0;
+    makeRetreat(retreatStart);
   }
-
-  makeBreathPhase(dur, intensity, phase);
-
-  breathing.timeout = setTimeout(()=>{
-    const next = isInhale ? 'exhale' : 'inhale';
-    breathing.phase = next;
-    scheduleBreathPhase(next);
-  }, (dur + pause)*1000);
 }
 
+function scheduleWave() {
+  if (!waveSound.running) return;
+  makeWaveSound();
+  const nextDelay = 7000 + Math.random() * 2000;
+  waveSound.timeout = setTimeout(scheduleWave, nextDelay);
+}
+
+// ТЕКСТОВАЯ АНИМАЦИЯ (на 25% быстрее)
+function wrapWords() {
+  const content = document.getElementById('textContent');
+  const paragraphs = content.querySelectorAll('p');
+  
+  paragraphs.forEach(p => {
+    const text = p.textContent;
+    const words = text.split(/(\s+)/);
+    p.innerHTML = words.map(word => 
+      word.trim() ? `<span class="word">${word}</span>` : word
+    ).join('');
+  });
+}
+
+function shuffleOnce() {
+  if (textFrozen) return;
+  
+  const spans = document.querySelectorAll('.word');
+  if (spans.length === 0) return;
+  
+  const allWords = Array.from(spans).map(s => s.textContent);
+  const shuffled = allWords.slice().sort(() => Math.random() - 0.5);
+  
+  spans.forEach((span, i) => {
+    span.textContent = shuffled[i];
+  });
+  
+  const baseDelay = 3300;
+  const variance = 900;
+  const nextDelay = baseDelay + Math.random() * variance;
+  
+  shuffleTimeout = setTimeout(shuffleOnce, nextDelay);
+}
+
+// КНОПКА ЗВУКА
 const muteBtn = document.getElementById('muteBtn');
 
-muteBtn.onclick = ()=>{
+muteBtn.onclick = () => {
   if (!audioCtx) {
     initAudio();
     if (!audioCtx) return;
   }
-  if(audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(()=>{});
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
   }
 
-  breathing.mute = !breathing.mute;
-  masterGain.gain.value = breathing.mute ? 0 : 0.26;
-  muteBtn.style.background = breathing.mute ? '#333' : '#555';
+  waveSound.mute = !waveSound.mute;
+  
+  const now = audioCtx.currentTime;
+  masterGain.gain.cancelScheduledValues(now);
+  masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+  masterGain.gain.exponentialRampToValueAtTime(waveSound.mute ? 0.0001 : 1.0, now + 0.3);
+  
+  muteBtn.style.background = waveSound.mute ? '#333' : '#555';
 };
 
-function userInit() {
-  if (!audioCtx) {
-    initAudio();
-  }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(()=>{});
-  }
-}
+// КНОПКА ЗАМОРОЗКИ
+const freezeBtn = document.getElementById('freezeBtn');
 
-window.addEventListener('click', userInit, { once: true });
-window.addEventListener('touchstart', userInit, { once: true });
-
-setTimeout(() => {
-  if (!breathing.running) {
-    function startTextLoop() {
-      function step() {
-        const baseDelay = 2200;
-        const delay = baseDelay / speedMultiplier;
-        if (!paused) {
-          shuffleOnce();
-        }
-        setTimeout(step, delay);
-      }
-      step();
-    }
-    startTextLoop();
+freezeBtn.onclick = () => {
+  if (textFrozen) return;
+  
+  textFrozen = true;
+  freezeBtn.style.background = '#777';
+  
+  if (shuffleTimeout) {
+    clearTimeout(shuffleTimeout);
+    shuffleTimeout = null;
   }
-}, 600);
+  
+  // Восстанавливаем исходный текст
+  const content = document.getElementById('textContent');
+  content.innerHTML = `
+    <p>Ця картина — про те, як ми намагаємося зберегти себе в світі, що постійно змінюється. Вона про те, як ми шукаємо баланс між тим, що було, і тим, що буде. Про те, як ми намагаємося зберегти свою ідентичність у світі, що постійно змінюється.</p>
 
+    <p>Механіка обнулення — це процес, коли ми скидаємо все зайве, щоб знайти себе справжніх. Це про те, як ми позбуваємося нашарувань, які накопичилися за роки, щоб знайти свою суть.</p>
+
+    <p>У цій картині закодовано ідею циклічності: все повертається, все починається знову. Але кожен новий цикл — це не просто повторення, а новий виток спіралі, де ми стаємо трохи іншими, трохи мудрішими.</p>
+
+    <p>Фігури на полотні нагадують про те, що ми всі — частина великого механізму, де кожен рух має значення. Де кожна дія породжує наслідки. Де все взаємопов'язане.</p>
+
+    <p>Це картина про пошук себе в хаосі сучасного світу. Про те, як важливо іноді зупинитися, обнулитися і почати знову — вже з новим розумінням, з новою перспективою.</p>
+  `;
+};
+
+// Инициализация
+wrapWords();
+shuffleOnce();
 </script>
 </body>
 </html>
