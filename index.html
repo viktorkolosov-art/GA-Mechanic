@@ -66,7 +66,7 @@ h1 {
 }
 
 button {
-  background: #555;
+  background: #222;          /* ухо по умолчанию тёмное, "неактивное" */
   border: none;
   color: #FFF;
   padding: 0;
@@ -84,7 +84,7 @@ button {
 }
 
 button:active {
-  background: #777;
+  background: #444;
 }
 
 button svg {
@@ -92,14 +92,23 @@ button svg {
   height: 28px;
 }
 
+/* снежинка чуть светлее уха */
+#freezeBtn {
+  background: #333;
+}
+
+#freezeBtn:active {
+  background: #555;
+}
+
 /* КАРТИНКА ПОД ЗАГОЛОВКОМ С БЕЛОЙ РАМКОЙ */
 .image-strip {
   width: 100%;
   margin-bottom: 20px;
   display: block;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #FFF;
   padding: 2px;
-  background: #FFFFFF;
+  background: #FFF;
 }
 
 .image-strip img {
@@ -159,53 +168,55 @@ button svg {
 проєкт «Глобальна адаптація», 200 × 210 см,
 п'ять частин, 35 робіт (розмір кожної роботи: 35 = 40 × 30 см), акрил, антиживопис.</h1>
     <div class="button-group">
+      <!-- ухо -->
       <button id="muteBtn" aria-label="Звук">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 20 6 C 22 6 25 8 26 12 C 27 16 26 20 24 23 C 23 24 22 25 20 25" 
-                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                stroke="#FFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
           <path d="M 20 10 C 21 10 22 11 22.5 13 C 23 15 22.5 17 21 18.5" 
-                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                stroke="#FFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
           <path d="M 19 24 C 18 25 17 25.5 16 25" 
-                stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                stroke="#FFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         </svg>
       </button>
+
+      <!-- снежинка -->
       <button id="freezeBtn" aria-label="Заморозити">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Центрально-симметричная снежинка (8 лучей) -->
           <!-- Вертикальная линия -->
-          <line x1="16" y1="4" x2="16" y2="28" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="16" y2="28" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
           <!-- Горизонтальная линия -->
-          <line x1="4" y1="16" x2="28" y2="16" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="28" y2="16" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
           <!-- Диагональ 1 -->
-          <line x1="7" y1="7" x2="25" y2="25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="25" y2="25" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
           <!-- Диагональ 2 -->
-          <line x1="25" y1="7" x2="7" y2="25" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="7" y2="25" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
           
-          <!-- Ответвления на концах (8 направлений) -->
+          <!-- Ответвления на концах -->
           <!-- Верх -->
-          <line x1="16" y1="4" x2="13" y2="7" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="16" y1="4" x2="19" y2="7" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="13" y2="7" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="4" x2="19" y2="7" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Низ -->
-          <line x1="16" y1="28" x2="13" y2="25" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="16" y1="28" x2="19" y2="25" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="28" x2="13" y2="25" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="28" x2="19" y2="25" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Лево -->
-          <line x1="4" y1="16" x2="7" y2="13" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="4" y1="16" x2="7" y2="19" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="7" y2="13" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="4" y1="16" x2="7" y2="19" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Право -->
-          <line x1="28" y1="16" x2="25" y2="13" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="28" y1="16" x2="25" y2="19" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="16" x2="25" y2="13" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="28" y1="16" x2="25" y2="19" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Диагональ верх-лево -->
-          <line x1="7" y1="7" x2="9" y2="5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="7" y1="7" x2="5" y2="9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="9" y2="5" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="7" x2="5" y2="9" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Диагональ верх-право -->
-          <line x1="25" y1="7" x2="23" y2="5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="25" y1="7" x2="27" y2="9" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="23" y2="5" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="7" x2="27" y2="9" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Диагональ низ-лево -->
-          <line x1="7" y1="25" x2="5" y2="23" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="7" y1="25" x2="9" y2="27" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="5" y2="23" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="7" y1="25" x2="9" y2="27" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Диагональ низ-право -->
-          <line x1="25" y1="25" x2="27" y2="23" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="25" y1="25" x2="23" y2="27" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="25" x2="27" y2="23" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="25" x2="23" y2="27" stroke="#FFF" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
@@ -236,6 +247,9 @@ let waveSound = { running: false, mute: false, timeout: null };
 let textFrozen = false;
 let shuffleTimeout = null;
 
+// сохраняем исходный текст один раз — к нему будем возвращаться по "снежинке"
+const ORIGINAL_HTML = document.getElementById('textContent').innerHTML;
+
 function initAudio() {
   if (audioCtx) return;
   try {
@@ -253,7 +267,7 @@ function initAudio() {
   }
 }
 
-// Создание одного удара волны
+// --- ЗВУК ВОЛН ---
 function makeCrash(startTime, intensity = 1.0) {
   if (!audioCtx || !waveSound.running) return;
   
@@ -273,7 +287,6 @@ function makeCrash(startTime, intensity = 1.0) {
   crashFilter.frequency.value = 400;
   crashFilter.Q.value = 0.7;
   
-  // Эхо для наката
   const crashDelay = audioCtx.createDelay();
   crashDelay.delayTime.value = 0.15;
   const crashEchoGain = audioCtx.createGain();
@@ -289,7 +302,6 @@ function makeCrash(startTime, intensity = 1.0) {
   crashFilter.connect(crashGain);
   crashGain.connect(masterGain);
   
-  // Эхо
   crashGain.connect(crashDelay);
   crashDelay.connect(crashEchoGain);
   crashEchoGain.connect(masterGain);
@@ -300,7 +312,6 @@ function makeCrash(startTime, intensity = 1.0) {
   return crashDuration;
 }
 
-// Создание отката волны
 function makeRetreat(startTime) {
   if (!audioCtx || !waveSound.running) return;
   
@@ -322,7 +333,6 @@ function makeRetreat(startTime) {
   retreatFilter.Q.value = 0.4;
   
   const retreatGain = audioCtx.createGain();
-  // Начинается ОЧЕНЬ тихо, вплотную к накату
   retreatGain.gain.setValueAtTime(0.0001, startTime);
   retreatGain.gain.exponentialRampToValueAtTime(0.08, startTime + 1.2);
   retreatGain.gain.linearRampToValueAtTime(0.06, startTime + retreatDuration * 0.5);
@@ -338,31 +348,20 @@ function makeRetreat(startTime) {
   return retreatDuration;
 }
 
-// Звук волны: иногда одиночный удар, иногда двойной
 function makeWaveSound() {
   if (!audioCtx || !waveSound.running) return;
 
   const now = audioCtx.currentTime;
-  
-  // 25% вероятность двойной волны
   const isDouble = Math.random() < 0.25;
   
   if (isDouble) {
-    // ДВОЙНОЙ УДАР: первый удар
     const firstCrashDuration = makeCrash(now, 1.0);
-    
-    // Второй удар начинается почти сразу после первого (небольшая пауза)
     const secondCrashStart = now + firstCrashDuration - 1.5;
     const secondCrashDuration = makeCrash(secondCrashStart, 0.95);
-    
-    // Откат начинается вплотную после второго удара
     const retreatStart = secondCrashStart + secondCrashDuration - 1.0;
     makeRetreat(retreatStart);
   } else {
-    // ОДИНОЧНЫЙ УДАР
     const crashDuration = makeCrash(now, 1.0);
-    
-    // Откат начинается вплотную к накату
     const retreatStart = now + crashDuration - 1.0;
     makeRetreat(retreatStart);
   }
@@ -375,7 +374,7 @@ function scheduleWave() {
   waveSound.timeout = setTimeout(scheduleWave, nextDelay);
 }
 
-// ТЕКСТОВАЯ АНИМАЦИЯ (на 25% быстрее)
+// --- ТЕКСТОВАЯ АНИМАЦИЯ ---
 function wrapWords() {
   const content = document.getElementById('textContent');
   const paragraphs = content.querySelectorAll('p');
@@ -409,7 +408,7 @@ function shuffleOnce() {
   shuffleTimeout = setTimeout(shuffleOnce, nextDelay);
 }
 
-// КНОПКА ЗВУКА
+// --- Кнопка уха (звук) ---
 const muteBtn = document.getElementById('muteBtn');
 
 muteBtn.onclick = () => {
@@ -428,36 +427,39 @@ muteBtn.onclick = () => {
   masterGain.gain.setValueAtTime(masterGain.gain.value, now);
   masterGain.gain.exponentialRampToValueAtTime(waveSound.mute ? 0.0001 : 1.0, now + 0.3);
   
-  muteBtn.style.background = waveSound.mute ? '#333' : '#555';
+  // тёмная кнопка = звук выключен, светлее = включён
+  muteBtn.style.background = waveSound.mute ? '#222' : '#555';
 };
 
-// КНОПКА ЗАМОРОЗКИ
+// --- Кнопка снежинки (временная "заморозка") ---
 const freezeBtn = document.getElementById('freezeBtn');
 
 freezeBtn.onclick = () => {
-  if (textFrozen) return;
+  if (textFrozen) return;         // пока уже заморожено — игнорируем повторные клики
   
   textFrozen = true;
-  freezeBtn.style.background = '#777';
-  
+  freezeBtn.style.background = '#777';  // подсветить как активную
+
+  // останавливаем текущее перемешивание
   if (shuffleTimeout) {
     clearTimeout(shuffleTimeout);
     shuffleTimeout = null;
   }
-  
-  // Восстанавливаем исходный текст
+
   const content = document.getElementById('textContent');
-  content.innerHTML = `
-    <p>Ця картина — про те, як ми намагаємося зберегти себе в світі, що постійно змінюється. Вона про те, як ми шукаємо баланс між тим, що було, і тим, що буде. Про те, як ми намагаємося зберегти свою ідентичність у світі, що постійно змінюється.</p>
+  // вернуть исходный, "правильный" текст (без спанов)
+  content.innerHTML = ORIGINAL_HTML;
 
-    <p>Механіка обнулення — це процес, коли ми скидаємо все зайве, щоб знайти себе справжніх. Це про те, як ми позбуваємося нашарувань, які накопичилися за роки, щоб знайти свою суть.</p>
+  // через 2–3 секунды снова включить анимацию
+  const delay = 2000 + Math.random() * 1000; // 2000–3000 мс
+  setTimeout(() => {
+    textFrozen = false;
+    freezeBtn.style.background = '#333'; // вернуть обычный цвет
 
-    <p>У цій картині закодовано ідею циклічності: все повертається, все починається знову. Але кожен новий цикл — це не просто повторення, а новий виток спіралі, де ми стаємо трохи іншими, трохи мудрішими.</p>
-
-    <p>Фігури на полотні нагадують про те, що ми всі — частина великого механізму, де кожен рух має значення. Де кожна дія породжує наслідки. Де все взаємопов'язане.</p>
-
-    <p>Це картина про пошук себе в хаосі сучасного світу. Про те, як важливо іноді зупинитися, обнулитися і почати знову — вже з новим розумінням, з новою перспективою.</p>
-  `;
+    // снова завернуть слова в span'ы и запустить цикл перемешивания
+    wrapWords();
+    shuffleOnce();
+  }, delay);
 };
 
 // Инициализация
